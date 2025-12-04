@@ -1,0 +1,70 @@
+spring:
+  application:
+    name: service-user
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/services_user}
+    username: ${SPRING_DATASOURCE_USERNAME:root}
+    password: ${SPRING_DATASOURCE_PASSWORD:}
+
+  jpa:
+    hibernate:
+      ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO:update}
+
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+# JWT Configuration
+app:
+  jwt:
+    secret: ${APP_JWT_SECRET:5367566B59703373367639792F423F4528482B4D6251655468576D5A71347437}
+    expiration-ms: ${APP_JWT_EXPIRATION_MS:86400000}
+    header: ${APP_JWT_HEADER_STRING:Authorization}
+    prefix: ${APP_JWT_PREFIX:Bearer }
+    issuer-uri: ${APP_JWT_ISSUER_URI:http://user-microservice}
+    rsa:
+        public-key-path: ${APP_JWT_RSA_PUBLIC_KEY_PATH:classpath:jwk/auth-public-key.pem}
+        private-key-path: ${APP_JWT_RSA_PRIVATE_KEY_PATH:classpath:jwk/auth-private-key.pem}
+        key-id: ${APP_JWT_RSA_KEY_ID:home-360}
+
+
+# Server
+server:
+  port: ${SERVER_PORT:8081}
+
+# Eureka
+eureka:
+  client:
+    enabled: true
+    service-url:
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://localhost:8761/eureka}
+  instance:
+    instance-id: ${spring.application.name}:${random.uuid}
+
+# Default Admin User
+app.admin-user:
+  email: ${ADMIN_USER_EMAIL:admin@example.com}
+  password: ${ADMIN_USER_PASSWORD:admin123!}
+  firstName: ${ADMIN_USER_FIRSTNAME:John}
+  lastName: ${ADMIN_USER_LASTNAME:Doe}
+  documentId: ${ADMIN_USER_DOCUMENTID:00000001}
+  phoneNumber: ${ADMIN_USER_PHONENUMBER:+1000000001}
+
+# Default Seller User
+app.seller-user:
+  email: ${SELLER_USER_EMAIL:seller@example.com}
+  password: ${SELLER_USER_PASSWORD:anna123!}
+  firstName: ${SELLER_USER_FIRSTNAME:Anna}
+  lastName: ${SELLER_USER_LASTNAME:Doe}
+  documentId: ${SELLER_USER_DOCUMENTID:00000002}
+  phoneNumber: ${SELLER_USER_PHONENUMBER:+1000000002}
+
+# Default Customer User
+app.customer-user:
+  email: ${CUSTOMER_USER_EMAIL:customer@example.com}
+  password: ${CUSTOMER_USER_PASSWORD:homero123!}
+  firstName: ${CUSTOMER_USER_FIRSTNAME:Homero}
+  lastName: ${CUSTOMER_USER_LASTNAME:Doe}
+  documentId: ${CUSTOMER_USER_DOCUMENTID:00000003}
+  phoneNumber: ${CUSTOMER_USER_PHONENUMBER:+1000000003}
