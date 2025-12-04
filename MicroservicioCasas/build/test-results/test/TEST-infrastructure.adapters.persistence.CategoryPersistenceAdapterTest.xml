@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="infrastructure.adapters.persistence.CategoryPersistenceAdapterTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2025-11-18T23:19:31.387Z" hostname="NMEDINAA" time="0.773">
+  <properties/>
+  <testcase name="save_category_success()" classname="infrastructure.adapters.persistence.CategoryPersistenceAdapterTest" time="0.672"/>
+  <testcase name="getCategories_success()" classname="infrastructure.adapters.persistence.CategoryPersistenceAdapterTest" time="0.09"/>
+  <testcase name="get_by_name_category_success()" classname="infrastructure.adapters.persistence.CategoryPersistenceAdapterTest" time="0.007"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

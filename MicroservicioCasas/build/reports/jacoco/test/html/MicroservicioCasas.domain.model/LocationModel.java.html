@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LocationModel.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">MicroservicioCasas</a> &gt; <a href="index.source.html" class="el_package">MicroservicioCasas.domain.model</a> &gt; <span class="el_source">LocationModel.java</span></div><h1>LocationModel.java</h1><pre class="source lang-java linenums">package MicroservicioCasas.domain.model;
+
+
+import MicroservicioCasas.domain.exceptions.DescriptionDepMaxSizeExceededException;
+import MicroservicioCasas.domain.exceptions.NameMaxSizeExceededException;
+import MicroservicioCasas.domain.utils.constants.DomainConstants;
+
+import java.util.Objects;
+
+public class LocationModel {
+
+    private final Long id;
+    private String city;
+    private String department;
+    private String description;
+
+<span class="fc" id="L17">    public LocationModel(Long id, String city, String department, String description){</span>
+
+<span class="fc bfc" id="L19" title="All 2 branches covered.">        if (city.length() &gt; 50) throw new NameMaxSizeExceededException();</span>
+<span class="fc bfc" id="L20" title="All 2 branches covered.">        if (department.length() &gt; 50) throw new NameMaxSizeExceededException();</span>
+<span class="fc bfc" id="L21" title="All 2 branches covered.">        if (description.length() &gt; 120) throw new DescriptionDepMaxSizeExceededException();</span>
+<span class="fc" id="L22">        this.id = id;</span>
+<span class="fc" id="L23">        this.city = Objects.requireNonNull(city, DomainConstants.FIELD_CITY_NULL_MESSAGE);</span>
+<span class="fc" id="L24">        this.department = Objects.requireNonNull(department, DomainConstants.FIELD_DEPARTMENT_NULL_MESSAGE);</span>
+<span class="fc" id="L25">        this.description = Objects.requireNonNull(description, DomainConstants.FIELD_DESCRIPTION_NULL_MESSAGE);</span>
+<span class="fc" id="L26">    }</span>
+
+    public Long getId() {
+<span class="fc" id="L29">        return id;</span>
+    }
+
+    public String getCity() {
+<span class="fc" id="L33">        return city;</span>
+    }
+
+    public String getDepartment() {
+<span class="fc" id="L37">        return department;</span>
+    }
+
+
+    public String getDescription() {
+<span class="fc" id="L42">        return description;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

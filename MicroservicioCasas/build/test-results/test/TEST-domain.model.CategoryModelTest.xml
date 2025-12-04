@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="domain.model.CategoryModelTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2025-11-18T23:19:30.885Z" hostname="NMEDINAA" time="0.067">
+  <properties/>
+  <testcase name="shouldThrowExceptionWhenNameExceedsMaxSize()" classname="domain.model.CategoryModelTest" time="0.011"/>
+  <testcase name="shouldUpdateNameWithValidValue()" classname="domain.model.CategoryModelTest" time="0.002"/>
+  <testcase name="shouldThrowExceptionWhenDescriptionExceedsMaxSize()" classname="domain.model.CategoryModelTest" time="0.006"/>
+  <testcase name="shouldCreateCategoryModelWithValidData()" classname="domain.model.CategoryModelTest" time="0.002"/>
+  <testcase name="shouldThrowExceptionWhenUpdatedDescriptionIsNull()" classname="domain.model.CategoryModelTest" time="0.003"/>
+  <testcase name="shouldThrowExceptionWhenUpdatedDescriptionExceedsMaxSize()" classname="domain.model.CategoryModelTest" time="0.004"/>
+  <testcase name="shouldThrowExceptionWhenNameIsNull()" classname="domain.model.CategoryModelTest" time="0.005"/>
+  <testcase name="shouldThrowExceptionWhenDescriptionIsNull()" classname="domain.model.CategoryModelTest" time="0.004"/>
+  <testcase name="shouldThrowExceptionWhenUpdatedNameExceedsMaxSize()" classname="domain.model.CategoryModelTest" time="0.004"/>
+  <testcase name="shouldThrowExceptionWhenUpdatedNameIsNull()" classname="domain.model.CategoryModelTest" time="0.007"/>
+  <testcase name="shouldUpdateDescriptionWithValidValue()" classname="domain.model.CategoryModelTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
