@@ -1,0 +1,125 @@
+server:
+  port: ${SERVER_PORT:8080}
+
+spring:
+  application:
+    name: service-gateway
+  cloud:
+    gateway:
+      mvc:
+        routes:
+          - id: service-user-api-docs
+            uri: lb://service-user
+            predicates:
+              - Path=/v3/api-docs/service-user
+            filters:
+              - RewritePath=/v3/api-docs/service-user, /v3/api-docs
+
+          - id: service-home-api-docs
+            uri: lb://service-home
+            predicates:
+              - Path=/v3/api-docs/service-home
+            filters:
+              - RewritePath=/v3/api-docs/service-home, /v3/api-docs
+
+          - id: service-visits-api-docs
+            uri: lb://service-visits
+            predicates:
+              - Path=/v3/api-docs/service-visits
+            filters:
+              - RewritePath=/v3/api-docs/service-visits, /v3/api-docs
+
+          - id: service-transactions-api-docs
+            uri: lb://service-transactions
+            predicates:
+              - Path=/v3/api-docs/service-transactions
+            filters:
+              - RewritePath=/v3/api-docs/service-transactions, /v3/api-docs
+
+
+
+          - id: service-user-route
+            uri: lb://service-user
+            predicates:
+              - Path=/api/v1/users/**, /api/v1/auth/** , /.well-known/jwks.json
+
+
+          - id: service-home-route
+            uri: lb://service-home
+            predicates:
+              - Path=/api/v1/categories/**, /api/v1/cities/**, /api/v1/departments/**, /api/v1/locations/**, /api/v1/neighborhoods/**, /api/v1/properties/**
+
+
+          - id: service-visits-route
+            uri: lb://service-visits
+            predicates:
+              - Path=/api/v1/visits/**
+
+
+          - id: service-transactions-route
+            uri: lb://service-transactions
+            predicates:
+              - Path=/api/v1/transactions/**
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jws-algorithms: RS256
+          issuer-uri: ${SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER_URI:http://service-user}
+          jwk-set-uri: ${SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI:lb://service-user/.well-known/jwks.json}
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://localhost:8761/eureka}
+    fetch-registry: true
+    register-with-eureka: true
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.uuid}}
+    prefer-ip-address: true
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+    org.springframework.security.oauth2: DEBUG
+    com.pragma.gateway360.config: DEBUG
+    com.nimbusds.jose: DEBUG
+    com.nimbusds.jose.jwk: DEBUG
+    com.nimbusds.jose.proc: DEBUG
+    com.nimbusds.jose.util: DEBUG
+    com.nimbusds.jwt: DEBUG
+    com.nimbusds.jwt.proc: DEBUG
+    com.nimbusds.jwt.util: DEBUG
+    com.nimbusds.jose.crypto: DEBUG
+    com.nimbusds.jose.crypto.impl: DEBUG
+    com.nimbusds.jose.crypto.ec: DEBUG
+    com.nimbusds.jose.crypto.impl.ec: DEBUG
+    com.nimbusds.jose.crypto.impl.ec.ECKeyLoader: DEBUG
+    com.nimbusds.jose.crypto.impl.ec.ECKeyLoader$1: DEBUG
+    com.nimbusds.jose.crypto.impl.ec.ECKeyLoader$2: DEBUG
+    com.nimbusds.jose.crypto.impl.ec.ECKeyLoader$3: DEBUG
+    com.nimbusds.jose.crypto.impl.ec.ECKeyLoader$4: DEBUG
+
+app:
+  jwt:
+    secret: ${APP_JWT_SECRET:5367566B59703373367639792F423F4528482B4D6251655468576D5A71347437}
+    expiration-ms: ${APP_JWT_EXPIRATION_MS:86400000}
+    prefix: ${APP_JWT_PREFIX:Bearer}
+    header: ${APP_JWT_HEADER_STRING:Authorization}
+    issuer-uri: ${APP_JWT_ISSUER_URI:http://service-user}
+
+  allowed-origins: ${ALLOWED_ORIGINS:http://localhost:3000,http://localhost:8080}
+
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    urls:
+      - name: User
+        url: /v3/api-docs/service-user
+      - name: Home
+        url: /v3/api-docs/service-home
+      - name: Visits
+        url: /v3/api-docs/service-visits
+      - name: Transactions
+        url: /v3/api-docs/service-transactions
