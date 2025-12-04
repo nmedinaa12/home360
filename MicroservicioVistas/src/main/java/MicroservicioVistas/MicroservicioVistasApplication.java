@@ -1,0 +1,15 @@
+package MicroservicioVistas;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
+
+@SpringBootApplication
+@EnableFeignClients
+public class MicroservicioVistasApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(MicroservicioVistasApplication.class, args);
+	}
+
+}

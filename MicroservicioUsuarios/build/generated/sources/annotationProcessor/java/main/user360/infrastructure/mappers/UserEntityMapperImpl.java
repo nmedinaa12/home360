@@ -1,0 +1,101 @@
+package user360.infrastructure.mappers;
+
+import java.util.ArrayList;
+import java.util.List;
+import javax.annotation.processing.Generated;
+import org.springframework.stereotype.Component;
+import user360.domain.model.UserModel;
+import user360.infrastructure.entities.UserEntity;
+
+@Generated(
+    value = "org.mapstruct.ap.MappingProcessor",
+    date = "2025-12-03T22:30:36-0500",
+    comments = "version: 1.6.3, compiler: IncrementalProcessingEnvironment from gradle-language-java-8.14.3.jar, environment: Java 17.0.12 (Oracle Corporation)"
+)
+@Component
+public class UserEntityMapperImpl implements UserEntityMapper {
+
+    @Override
+    public UserEntity modelToEntity(UserModel userModel) {
+        if ( userModel == null ) {
+            return null;
+        }
+
+        UserEntity userEntity = new UserEntity();
+
+        userEntity.setId( userModel.getId() );
+        userEntity.setFirstName( userModel.getFirstName() );
+        userEntity.setLastName( userModel.getLastName() );
+        userEntity.setDocumentId( userModel.getDocumentId() );
+        userEntity.setPhoneNumber( userModel.getPhoneNumber() );
+        userEntity.setBirthDate( userModel.getBirthDate() );
+        userEntity.setEmail( userModel.getEmail() );
+        userEntity.setPassword( userModel.getPassword() );
+        userEntity.setRole( userModel.getRole() );
+        userEntity.setActive( userModel.getActive() );
+        if ( userModel.getCreatedAt() != null ) {
+            userEntity.setCreatedAt( userModel.getCreatedAt().atStartOfDay() );
+        }
+        if ( userModel.getUpdatedAt() != null ) {
+            userEntity.setUpdatedAt( userModel.getUpdatedAt().atStartOfDay() );
+        }
+
+        return userEntity;
+    }
+
+    @Override
+    public UserModel entityToModel(UserEntity userEntity) {
+        if ( userEntity == null ) {
+            return null;
+        }
+
+        UserModel userModel = new UserModel();
+
+        userModel.setActive( userEntity.getActive() );
+        userModel.setId( userEntity.getId() );
+        userModel.setFirstName( userEntity.getFirstName() );
+        userModel.setLastName( userEntity.getLastName() );
+        userModel.setDocumentId( userEntity.getDocumentId() );
+        userModel.setPhoneNumber( userEntity.getPhoneNumber() );
+        userModel.setBirthDate( userEntity.getBirthDate() );
+        userModel.setEmail( userEntity.getEmail() );
+        userModel.setPassword( userEntity.getPassword() );
+        userModel.setRole( userEntity.getRole() );
+        if ( userEntity.getCreatedAt() != null ) {
+            userModel.setCreatedAt( userEntity.getCreatedAt().toLocalDate() );
+        }
+        if ( userEntity.getUpdatedAt() != null ) {
+            userModel.setUpdatedAt( userEntity.getUpdatedAt().toLocalDate() );
+        }
+
+        return userModel;
+    }
+
+    @Override
+    public List<UserModel> entityListToModelList(List<UserEntity> users) {
+        if ( users == null ) {
+            return null;
+        }
+
+        List<UserModel> list = new ArrayList<UserModel>( users.size() );
+        for ( UserEntity userEntity : users ) {
+            list.add( entityToModel( userEntity ) );
+        }
+
+        return list;
+    }
+
+    @Override
+    public List<UserEntity> modelListToEntityList(List<UserModel> users) {
+        if ( users == null ) {
+            return null;
+        }
+
+        List<UserEntity> list = new ArrayList<UserEntity>( users.size() );
+        for ( UserModel userModel : users ) {
+            list.add( modelToEntity( userModel ) );
+        }
+
+        return list;
+    }
+}
