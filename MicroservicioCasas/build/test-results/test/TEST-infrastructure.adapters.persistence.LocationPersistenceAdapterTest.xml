@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="infrastructure.adapters.persistence.LocationPersistenceAdapterTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2025-11-18T23:19:32.176Z" hostname="NMEDINAA" time="0.344">
+  <properties/>
+  <testcase name="findByDepartmentAndCity_NotFound_ReturnsNull()" classname="infrastructure.adapters.persistence.LocationPersistenceAdapterTest" time="0.325"/>
+  <testcase name="findByDepartmentAndCity_Found_ReturnsModel()" classname="infrastructure.adapters.persistence.LocationPersistenceAdapterTest" time="0.008"/>
+  <testcase name="save_Success()" classname="infrastructure.adapters.persistence.LocationPersistenceAdapterTest" time="0.008"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

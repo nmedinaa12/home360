@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LocationController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">MicroservicioCasas</a> &gt; <a href="index.source.html" class="el_package">MicroservicioCasas.infrastructure.endpoints.rest</a> &gt; <span class="el_source">LocationController.java</span></div><h1>LocationController.java</h1><pre class="source lang-java linenums">package MicroservicioCasas.infrastructure.endpoints.rest;
+
+import MicroservicioCasas.application.dto.request.SaveLocationRequest;
+import MicroservicioCasas.application.dto.response.*;
+import MicroservicioCasas.application.services.LocationService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+
+@RestController
+@RequestMapping(&quot;/api/v1/location&quot;)
+@RequiredArgsConstructor
+@Tag(name = &quot;Locations&quot;, description = &quot;Create and search locations&quot;)
+public class LocationController {
+
+    private final LocationService locationService;
+
+    @PostMapping(&quot;/&quot;)
+    @Operation(
+            summary = &quot;Create Location&quot;,
+            description = &quot;Create a location with city, department, and description&quot;,
+            tags = {&quot;Create Locations&quot;},
+            requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
+                    description = &quot;Requires a JSON with city, department, and description&quot;,
+                    required = true,
+                    content = @Content(
+                            mediaType = &quot;application/json&quot;,
+                            schema = @Schema(implementation = SaveLocationRequest.class)
+                    )
+            ),
+            responses = {
+                    @ApiResponse(
+                            responseCode = &quot;201&quot;,
+                            description = &quot;Location created&quot;,
+                            content = @Content(
+                                    mediaType = &quot;application/json&quot;,
+                                    schema = @Schema(implementation = SaveLocationResponse.class)
+                            )
+                    )
+            }
+    )
+    public ResponseEntity&lt;SaveLocationResponse&gt; save(@RequestBody SaveLocationRequest saveLocationRequest) {
+<span class="fc" id="L54">        return ResponseEntity.status(HttpStatus.CREATED).body(locationService.save(saveLocationRequest));</span>
+    }
+
+    @GetMapping(&quot;/&quot;)
+    @Operation(
+            summary = &quot;Search Locations&quot;,
+            description = &quot;Retrieve a paginated list of locations based on search text&quot;,
+            tags = {&quot;Search Locations&quot;},
+            parameters = {
+                    @Parameter(name = &quot;searchText&quot;, description = &quot;Text to search for in location names&quot;, required = true, in = ParameterIn.QUERY),
+                    @Parameter(name = &quot;page&quot;, description = &quot;Page number (0-based index)&quot;, required = true, in = ParameterIn.QUERY),
+                    @Parameter(name = &quot;size&quot;, description = &quot;Number of locations per page&quot;, required = true, in = ParameterIn.QUERY),
+                    @Parameter(name = &quot;orderAsc&quot;, description = &quot;Sort order: true = ascending, false = descending&quot;, required = true, in = ParameterIn.QUERY)
+            },
+            responses = {
+                    @ApiResponse(
+                            responseCode = &quot;200&quot;,
+                            description = &quot;Paginated list of locations retrieved successfully&quot;,
+                            content = @Content(
+                                    mediaType = &quot;application/json&quot;,
+                                    schema = @Schema(implementation = PaginatedLocationResponse.class)
+                            )
+                    )
+            }
+    )
+    public ResponseEntity&lt;PaginatedLocationResponse&gt; searchLocations(
+            @RequestParam String searchText,
+            @RequestParam Integer page,
+            @RequestParam Integer size,
+            @RequestParam boolean orderAsc) {
+
+<span class="nc" id="L85">        List&lt;LocationResponse&gt; locations = locationService.getLocations(searchText, page, size, orderAsc);</span>
+<span class="nc" id="L86">        PaginatedLocationResponse response = new PaginatedLocationResponse(page, size, locations);</span>
+
+<span class="nc" id="L88">        return ResponseEntity.ok(response);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

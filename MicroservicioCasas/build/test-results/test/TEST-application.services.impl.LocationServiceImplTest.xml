@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="application.services.impl.LocationServiceImplTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2025-11-18T23:19:30.644Z" hostname="NMEDINAA" time="0.233">
+  <properties/>
+  <testcase name="save_Successful()" classname="application.services.impl.LocationServiceImplTest" time="0.233"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

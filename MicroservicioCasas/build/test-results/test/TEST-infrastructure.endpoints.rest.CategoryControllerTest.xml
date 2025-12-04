@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="infrastructure.endpoints.rest.CategoryControllerTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2025-11-18T23:19:32.531Z" hostname="NMEDINAA" time="0.309">
+  <properties/>
+  <testcase name="shouldReturnAllCategoriesSuccessfully()" classname="infrastructure.endpoints.rest.CategoryControllerTest" time="0.265"/>
+  <testcase name="shouldCreateCategorySuccessfully()" classname="infrastructure.endpoints.rest.CategoryControllerTest" time="0.042"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
